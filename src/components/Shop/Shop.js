@@ -19,6 +19,13 @@ const Shop = () => {
       ? alert("You Can not add more then 4 product")
       : setCart(newCart);
   };
+  const chooseChair = () => {
+    const choose = cart[Math.floor(Math.random() * cart?.length)];
+    // cart = [choose];
+    setCart([choose]);
+    console.log(cart, choose);
+    // return cart;
+  };
   console.log("addProduct", cart);
   return (
     <div className="shop bg-light">
@@ -40,7 +47,7 @@ const Shop = () => {
           <Col md={{ offset: 0.5 }}></Col>
           <Col xs={3} md={3}>
             <Row className="cart-container shadow-lg mt-4 p-3 pt-5 mb-5 bg-white rounded">
-              <Cart cart={cart} />
+              <Cart cart={cart} chooseChair={chooseChair} />
             </Row>
           </Col>
         </Row>
