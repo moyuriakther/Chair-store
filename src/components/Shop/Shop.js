@@ -14,19 +14,17 @@ const Shop = () => {
   }, []);
   const handleAddProduct = (product) => {
     const newCart = [...cart, product];
-    // setCart(newCart);
     cart.length > 3
       ? alert("You Can not add more then 4 product")
       : setCart(newCart);
   };
   const chooseChair = () => {
     const choose = cart[Math.floor(Math.random() * cart?.length)];
-    // cart = [choose];
     setCart([choose]);
-    console.log(cart, choose);
-    // return cart;
   };
-  console.log("addProduct", cart);
+  const cartReset = () => {
+    setCart([]);
+  };
   return (
     <div className="shop bg-light">
       <h1 className="shop-title text-center">Confused Buyer</h1>
@@ -47,7 +45,11 @@ const Shop = () => {
           <Col md={{ offset: 0.5 }}></Col>
           <Col xs={3} md={3}>
             <Row className="cart-container shadow-lg mt-4 p-3 pt-5 mb-5 bg-white rounded">
-              <Cart cart={cart} chooseChair={chooseChair} />
+              <Cart
+                cart={cart}
+                chooseChair={chooseChair}
+                cartReset={cartReset}
+              />
             </Row>
           </Col>
         </Row>

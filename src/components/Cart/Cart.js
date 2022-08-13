@@ -7,14 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import CartProduct from "./CartProduct";
 
-const Cart = ({ cart, chooseChair }) => {
-  console.log(cart);
-  // const chooseChair = () => {
-  //   const choose = cart[Math.floor(Math.random() * cart.length)];
-  //   cart = [choose];
-  //   console.log(cart);
-  //   return cart;
-  // };
+const Cart = ({ cart, chooseChair, cartReset }) => {
   return (
     <div className="cart">
       <h4>Selected Chairs : {cart?.length}</h4>
@@ -22,14 +15,9 @@ const Cart = ({ cart, chooseChair }) => {
         ? cart?.map((item) => <CartProduct item={item} key={item.id} />)
         : ""}
       <Button variant="info" className="my-2" onClick={chooseChair}>
-        {/* {cart.length && chooseChair ? (
-          <CartProduct item={chooseChair} key={chooseChair.id} />
-        ) : (
-          ""
-        )} */}
         Choose 1 For Me <FontAwesomeIcon icon={faCircleCheck} />{" "}
       </Button>{" "}
-      <Button variant="danger">
+      <Button variant="danger" onClick={cartReset}>
         Clear Cart <FontAwesomeIcon icon={faTrashCanArrowUp} />{" "}
       </Button>
     </div>
