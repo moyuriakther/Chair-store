@@ -7,12 +7,18 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import CartProduct from "./CartProduct";
 
-const Cart = ({ cart, chooseChair, cartReset }) => {
+const Cart = ({ cart, chooseChair, cartReset, handleRemoveItem }) => {
   return (
     <div className="cart">
       <h4>Selected Chairs : {cart?.length}</h4>
       {cart?.length
-        ? cart?.map((item) => <CartProduct item={item} key={item.id} />)
+        ? cart?.map((item) => (
+            <CartProduct
+              item={item}
+              key={item.id}
+              handleRemoveItem={handleRemoveItem}
+            />
+          ))
         : ""}
       <Button variant="info" className="my-2" onClick={chooseChair}>
         Choose 1 For Me <FontAwesomeIcon icon={faCircleCheck} />{" "}

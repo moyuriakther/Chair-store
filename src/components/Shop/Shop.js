@@ -12,18 +12,27 @@ const Shop = () => {
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
+  // add product to cart
   const handleAddProduct = (product) => {
     const newCart = [...cart, product];
     cart.length > 3
       ? alert("You Can not add more then 4 product")
       : setCart(newCart);
   };
+  //choose a random chair from 4 chair
   const chooseChair = () => {
     const choose = cart[Math.floor(Math.random() * cart?.length)];
     setCart([choose]);
   };
+  //set empty cart
   const cartReset = () => {
     setCart([]);
+  };
+  //delete item from cart
+  const handleRemoveItem = (id) => {
+    const removedItem = cart.filter((pb) => pb.id !== id);
+    setCart(removedItem);
+    console.log("remove", id, removedItem);
   };
   return (
     <div className="shop bg-light">
@@ -49,6 +58,7 @@ const Shop = () => {
                 cart={cart}
                 chooseChair={chooseChair}
                 cartReset={cartReset}
+                handleRemoveItem={handleRemoveItem}
               />
             </Row>
           </Col>
