@@ -1,8 +1,6 @@
-### Project Name - Real Chair Store
+# Project Name - Real Chair Store
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Live Link - https://chair-store-1.netlify.app/
+# Live Link - https://chair-store-1.netlify.app/
 
 In the project directory, you can run:
 
