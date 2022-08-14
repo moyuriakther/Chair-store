@@ -2,7 +2,13 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
+import {
+  addToDb,
+  deleteShoppingCart,
+  getProductFromLocalStorage,
+  removeFromDb,
+} from "../../utils/fakedb";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -12,12 +18,29 @@ const Shop = () => {
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
+
+  // load products from local storage
+  useEffect(() => {
+    const localProducts = getProductFromLocalStorage();
+    let savedCart = [];
+    for (const id in localProducts) {
+      const existProducts = products?.find((product) => product.id === id);
+      if (existProducts) {
+        const quantity = localProducts[id];
+        existProducts.quantity = quantity;
+        savedCart.push(existProducts);
+      }
+    }
+    setCart(savedCart);
+  }, [products]);
+
   // add product to cart
   const handleAddProduct = (product) => {
     const newCart = [...cart, product];
     cart.length > 3
       ? alert("You Can not add more then 4 product")
       : setCart(newCart);
+    addToDb(product.id);
   };
   //choose a random chair from 4 chair
   const chooseChair = () => {
@@ -27,11 +50,13 @@ const Shop = () => {
   //set empty cart
   const cartReset = () => {
     setCart([]);
+    deleteShoppingCart();
   };
   //delete item from cart
   const handleRemoveItem = (id) => {
     const removedItem = cart.filter((pb) => pb.id !== id);
     setCart(removedItem);
+    removeFromDb(id);
     console.log("remove", id, removedItem);
   };
   return (
