@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Live Link - https://chair-store-1.netlify.app/
 
 In the project directory, you can run:
 
