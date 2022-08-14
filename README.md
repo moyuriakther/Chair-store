@@ -1,4 +1,4 @@
-# Project Name - Real Chair Store
+# Project Name - Chair Store
 
 # Live Link - https://chair-store-1.netlify.app/
 
